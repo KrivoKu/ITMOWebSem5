@@ -1,0 +1,62 @@
+body{
+    background: #ADD8E6;
+}
+
+.boards{
+    display: flex;
+}
+
+.board{
+    display: flex;
+    padding: 30px;
+    flex: 1;
+}
+
+.board *{
+    font-family: 'Shippori Antique B1', sans-serif;
+}
+
+.column{
+    flex: 2;
+    display: inline-block;
+}
+
+.column:not(:last-child){
+    margin-right: 30px;
+}
+
+.column_title{
+    margin-bottom: 20px;
+    font-size: 35px;
+    color: #FFFFFF;
+    user-select: none;
+}
+
+.card{
+    padding: 10px 15px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background: #FFFFFF;
+    cursor: pointer;
+}
+
+.dropzone{
+    height: 10px;
+    transition: height 150ms;
+}
+
+.dropzone--active{
+    height: 25px;
+    background: #000000;
+    opacity: 30%;
+}
+
+.add_item{
+    width: 100%;
+    padding: 10px 0px;
+    font-size: 20px;
+    color: #000000;
+    background: rgba(255,255,255,0.8);
+    border-radius: 5px;
+    cursor: pointer;
+}
