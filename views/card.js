@@ -51,7 +51,7 @@ export default class Card{
         return range.createContextualFragment(`
         <div class="cards" draggable="true">
             <div contenteditable="true" class="card"></div>
-             <div class="dropzone"></div>
+            <div class="dropzone"></div>
          </div>
         `).children[0];
     }

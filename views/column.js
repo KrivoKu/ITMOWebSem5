@@ -2,7 +2,7 @@ import API from "../api/api.js";
 import Card from "./card.js";
 
 export default class Column{
-    constructor(id, title) {
+    constructor(id, title, boardID) {
         this.elements = {};
         this.elements.root = Column.createRoot()
         this.elements.title = this.elements.root.querySelector(".column_title")
@@ -12,11 +12,11 @@ export default class Column{
         this.elements.title.textContent = title;
 
         this.elements.addCardBtn.addEventListener('click', ()=>{
-            const card = API.addCard(1, id, '')
+            const card = API.addCard(boardID, id, '')
             this.renderData(card)
         })
 
-        const cards = API.getCards(1,id)
+        const cards = API.getCards(boardID,id)
         for(const card of cards){
             this.renderData(card)
         }

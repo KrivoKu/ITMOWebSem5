@@ -1,14 +1,25 @@
-
 import Board from "./board.js";
+import API from "../api/api.js";
 
 export default class Boards{
     constructor(root) {
         this.root = root
-        //TODO:добавить вьюху для карточки и колонки, создать все колонки
-        Boards.boards().forEach(board =>{
-            const newBoard = new Board(board.id, board.title, board.columns);
-            this.root.appendChild(newBoard.elements.root);
-        });
+        this.elements = []
+        this.elements.boards = API.getBoards();
+        this.elements.firstBoard = new Board(this.elements.boards[0].id,this.elements.boards[0].title, this.elements.boards[0].columns)
+        this.root.appendChild(this.elements.firstBoard.elements.root)
+    }
+
+    switchBoard(id){
+        let board = null
+        for(const brd of this.elements.boards){
+            if(brd.id == id) {
+                board = brd
+            }
+        }
+        const boardView = new Board(board.id, board.title, board.columns)
+        this.root.removeChild(this.root.children[0])
+        this.root.appendChild(boardView.elements.root)
     }
 
     static boards(){
@@ -35,3 +46,4 @@ export default class Boards{
         ]
     }
 }
+

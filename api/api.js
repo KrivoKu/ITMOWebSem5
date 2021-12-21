@@ -88,6 +88,35 @@ export default class API{
         const brd = read_data().find(board => board.id === boardID)
         return brd
     }
+
+    static getBoards(){
+        return read_data();
+    }
+
+    static addBoard(){
+        const boards = read_data()
+        const newBoard = {
+                id: Math.floor(Math.random()*100000),
+                title: '',
+                columns: [{
+                    id: 1,
+                    title: "Новое",
+                    items: []
+                },
+                    {
+                        id: 2,
+                        title: "В работе",
+                        items: []
+                    },
+                    {
+                        id: 3,
+                        title: "Сделано",
+                        items: []
+                    }],
+            }
+            boards.push(newBoard)
+            save_data(boards)
+        }
 }
 
 function read_data(){

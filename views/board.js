@@ -15,9 +15,9 @@ export default class Board{
 
 
         const brd = API.getColumns(id)
+        console.log(brd, 'kekw')
         let i = 0
         for(const col of brd.columns){
-            console.log(col)
             this.renderData(col, i)
             i++;
         }
@@ -30,13 +30,13 @@ export default class Board{
         range.selectNode(document.body)
         return range.createContextualFragment(`
             <div class="board">
-
+                
             </div>
         `).children[0];
     }
 
     renderData(data, i){
-        const column = new Column(data.id, this.columns[i].title);
+        const column = new Column(data.id, this.columns[i].title, this.elements.id);
         console.log(data.title)
         this.elements.root.appendChild(column.elements.root)
     }
