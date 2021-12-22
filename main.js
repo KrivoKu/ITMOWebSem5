@@ -8,17 +8,27 @@ const boards = new Boards(
 const select = document.querySelector('.board_select')
 
 function updateSelect(){
+    let lastSelect = null
     select.addEventListener('click', ()=>{
         select.innerHTML = ''
         for(const board of API.getBoards()) {
             const opt = document.createElement('option');
-            opt.value = board.id;
             opt.innerHTML = board.title;
+            opt.value = board.id;
+            if(lastSelect != null)
+                if(opt.value == lastSelect.value)
+                    opt.selected = true
             select.appendChild(opt)
+        }
+        if(API.getBoards().length === 1){
+            select.options[0].selected = true
+            lastSelect = select.options[0]
         }
     })
 
-    select.addEventListener('change', ()=>{
+    select.addEventListener('change', e =>{
+        lastSelect = select.options[select.selectedIndex]
+        lastSelect.selected = true;
         const value = select.options[select.selectedIndex].value
         boards.switchBoard(value)
     })
@@ -27,5 +37,16 @@ function updateSelect(){
 updateSelect()
 
 const addBoardButton = document.querySelector(".Add_board")
-addBoardButton.addEventListener("click",() => API.addBoard())
+addBoardButton.addEventListener("click",() => {
+    API.addBoard(newName)
+    newBoardName.textContent = ''}
+)
+
+const newBoardName = document.querySelector('.Boards_name')
+let newName = null;
+newBoardName.addEventListener('blur', ()=>{
+    newName = newBoardName.textContent;
+})
+
+
 

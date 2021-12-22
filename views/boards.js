@@ -12,11 +12,12 @@ export default class Boards{
 
     switchBoard(id){
         let board = null
-        for(const brd of this.elements.boards){
+        for(const brd of API.getBoards()){
             if(brd.id == id) {
                 board = brd
             }
         }
+        console.log(board)
         const boardView = new Board(board.id, board.title, board.columns)
         this.root.removeChild(this.root.children[0])
         this.root.appendChild(boardView.elements.root)

@@ -23,12 +23,9 @@ export default class Drop{
             const cardID = Number(e.dataTransfer.getData('text/plain'))
             //console.log(cardID)
             const card = document.querySelector(`[data-id="${cardID}"]`)
-            console.log("parent =" , dropzone.parentElement)
             const insertTo = dropzone.parentElement
 
-            console.log(insertTo)
             insertTo.after(card);
-            console.log(card)
             API.updateCard(1, cardID, {
                 columnID: columnID,
                 position: dropzoneID

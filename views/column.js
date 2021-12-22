@@ -10,6 +10,7 @@ export default class Column{
         this.elements.addCardBtn = this.elements.root.querySelector(".add_item")
         this.elements.root.dataset.id = id;
         this.elements.title.textContent = title;
+        this.boardID = boardID
 
         this.elements.addCardBtn.addEventListener('click', ()=>{
             const card = API.addCard(boardID, id, '')
@@ -36,7 +37,7 @@ export default class Column{
 
     renderData(data){
         //TODO: рендер карточки
-        const card = new Card(data.id, data.content);
+        const card = new Card(data.id, data.content, data.userID, this.boardID);
 
         this.elements.cards.appendChild(card.elements.root)
     }
